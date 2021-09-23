@@ -1,4 +1,4 @@
-#REDIS
+# REDIS
 
 1) Windows
 	- Enable WSL from "Turn Windows features on or off settings"
