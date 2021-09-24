@@ -10,13 +10,14 @@ const pool = new Pool({
   port: 5432
 });
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+const getUsers = (req , res) => {
   pool.query('SELECT * FROM "Users"', (err,result) => {
     if(err)
       throw err;
-    res.status(200).json(result);
+    res.status(200).json(result.rows);
   });
-});
+}
+/* GET users listing. */
+router.get('/', getUsers);
 
 module.exports = router;

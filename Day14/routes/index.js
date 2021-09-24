@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var registerInitialCheck = require('../middlewares/registerChecks');
-var register = require('../controllers/register');
+var { register, registerSuperAdmin } = require('../controllers/register');
+var check = require('../middlewares/checkSuperAdmin');
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const sess = req.session;
@@ -33,5 +36,7 @@ router.get('/test', function(req, res, next) {
  */
 
 router.post('/register', registerInitialCheck , register);
+router.post('/register-super-admin' , registerInitialCheck , registerSuperAdmin);
+router.get('/super' , check);
 
 module.exports = router;
