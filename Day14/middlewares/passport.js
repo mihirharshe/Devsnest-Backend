@@ -13,7 +13,7 @@ module.exports = passport => {
             // await User.findById(payload.user_id)
             console.log(payload);
             await User.findOne({
-                where : { user_id : payload.user_id }
+                where : { id : payload.id }
             })
                 .then(user=> {
                     User.findAll()

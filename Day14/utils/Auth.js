@@ -202,7 +202,7 @@ const userRegister = async (userDets, role, res) => {
 
     await newUser.save();
     return res.status(201).json({
-      message: "Hurry! now you are successfully registred. Please nor login.",
+      message: "You are successfully registered. Please now login.",
       success: true,
       user: newUser
     });
@@ -243,7 +243,7 @@ const userLogin = async (userCreds, role, res) => {
     // Sign in the token and issue it to the user
     let token = jwt.sign(
       {
-        user_id: user._id,
+        id: user.id,
         role: user.role,
         username: user.username,
         email: user.email
@@ -253,6 +253,7 @@ const userLogin = async (userCreds, role, res) => {
     );
 
     let result = {
+      id: user.id,
       username: user.username,
       role: user.role,
       email: user.email,
@@ -262,7 +263,7 @@ const userLogin = async (userCreds, role, res) => {
 
     return res.status(200).json({
       ...result,
-      message: "Hurray! You are now logged in.",
+      message: "You are now logged in.",
       success: true
     });
   } else {
